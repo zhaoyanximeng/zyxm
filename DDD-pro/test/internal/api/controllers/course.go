@@ -18,7 +18,7 @@ func (cc *CourseControllers) Name() string {
 }
 
 func (cc *CourseControllers) Add(c *gin.Context) {
-	co := course.New()
+	co := course_model.New()
 	if err := c.ShouldBind(co);err != nil {
 		logrus.Errorf("bind err:%s",err)
 		response.Error(c,errcode.ErrInvalidParam.WithDetails(err.Error()))

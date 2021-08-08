@@ -1,4 +1,4 @@
-package course
+package course_model
 
 type CourseInfo struct {
 	CourseName  string `json:"course_name" gorm:"column:course_name"`

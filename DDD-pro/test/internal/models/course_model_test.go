@@ -1,15 +1,15 @@
 package models
 
 import (
-	"eventbus/domain/models/course"
+	"eventbus/domain/models/course_model"
 	"eventbus/test/internal/conf"
 	"testing"
 )
 
 func CourseCreate(name string,time int64) error {
-	c := course.New(
-		course.WithCourseName(name),
-		course.WithCourseTime(time),
+	c := course_model.New(
+		course_model.WithCourseName(name),
+		course_model.WithCourseTime(time),
 	)
 
 	return conf.DB.Table("courses").Create(c).Error
