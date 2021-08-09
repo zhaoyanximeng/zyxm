@@ -2,6 +2,7 @@ package models
 
 import (
 	"eventbus/domain/models/course_model"
+	"eventbus/infrastructure/mysql_data"
 	"eventbus/test/internal/conf"
 	"testing"
 )
@@ -13,6 +14,18 @@ func CourseCreate(name string,time int64) error {
 	)
 
 	return conf.DB.Table("courses").Create(c).Error
+}
+
+func TestCourseMain_Load(t *testing.T) {
+	repo :=  mysql_data.NewCourseMainRepo(conf.DB)
+	c := course_model.New(
+		course_model.WithRepo(repo),
+		)
+	c.CourseID = 3
+	if err := c.Load(); err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("id=%d,%+v",c.CourseID,c.CourseInfo)
 }
 
 func TestCourseCreate(t *testing.T) {
