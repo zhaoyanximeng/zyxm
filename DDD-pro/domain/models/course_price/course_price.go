@@ -3,12 +3,12 @@ package course_price
 import "eventbus/domain/models/repos"
 
 type CoursePrice struct {
-	ID	int `json:"id" gorm:"column:id"`
-	CourseID int `json:"course_id" gorm:"column:course_id"`
-	Price *Price `json:"price" gorm:"embedded"`
-	Comment *PriceComment `json:"comment" gorm:"embedded"`
-	Iscurrent bool `json:"iscurrent" gorm:"column:iscurrent"`
-	repo      repos.CoursePriceRepo
+	ID        int                   `json:"id" gorm:"column:id"`
+	CourseID  int                   `json:"course_id" gorm:"column:course_id"`
+	Price     *Price                `json:"price" gorm:"embedded"`
+	Comment   *PriceComment         `json:"comment" gorm:"embedded"`
+	Iscurrent bool                  `json:"iscurrent" gorm:"column:iscurrent"`
+	Repo      repos.CoursePriceRepo `gorm:"-"`
 }
 
 func (*CoursePrice) Name() string {
@@ -16,7 +16,7 @@ func (*CoursePrice) Name() string {
 }
 
 func (cp *CoursePrice) Load() error {
-	return cp.repo.FindByID(cp)
+	return cp.Repo.FindByID(cp)
 }
 
 func New(args ...CoursePriceOption) *CoursePrice {
@@ -40,7 +40,7 @@ func (cpos CoursePriceOptions) apply(u *CoursePrice) {
 
 func WithCourseID(cid int) CoursePriceOption {
 	return func(c *CoursePrice) {
-		c.ID = cid
+		c.CourseID = cid
 	}
 }
 

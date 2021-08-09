@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"eventbus/domain/models/course"
+	"eventbus/domain/models/course_model"
 	"eventbus/test/internal/conf"
 	"eventbus/test/internal/utils/errcode"
 	"eventbus/test/internal/utils/response"

@@ -3,11 +3,11 @@ package course_model
 import "eventbus/domain/models/repos"
 
 type CourseMain struct {
-	CourseID      int            `json:"course_id" gorm:"column:course_id;AUTO_INCREMENT;PRIMARY_KEY"`
-	CourseInfo    *CourseInfo    `json:"course_info" gorm:"embedded"` // 课程信息
-	CourseTime    *CourseTime    `json:"course_time" gorm:"embedded"` // 课程时长
-	CourseAddDate *CourseAddDate `json:"course_adddate" gorm:"embedded"` // 入库时间
-	repo          repos.CourseMainRepo
+	CourseID      int                  `json:"course_id" gorm:"column:course_id;AUTO_INCREMENT;PRIMARY_KEY"`
+	CourseInfo    *CourseInfo          `json:"course_info" gorm:"embedded"` // 课程信息
+	CourseTime    *CourseTime          `json:"course_time" gorm:"embedded"` // 课程时长
+	CourseAddDate *CourseAddDate       `json:"course_adddate" gorm:"embedded"` // 入库时间
+	Repo          repos.CourseMainRepo `gorm:"-"`
 }
 
 func (*CourseMain) Name() string {
@@ -15,12 +15,12 @@ func (*CourseMain) Name() string {
 }
 
 func (cm *CourseMain) Load() error {
-	return cm.repo.FindByID(cm)
+	return cm.Repo.FindByID(cm)
 }
 
 func WithRepo(repo repos.CourseMainRepo) CourseMainOption {
 	return func(c *CourseMain) {
-		c.repo = repo
+		c.Repo = repo
 	}
 }
 
