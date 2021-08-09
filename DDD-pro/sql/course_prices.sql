@@ -28,7 +28,7 @@ CREATE TABLE `course_prices`  (
   `sale_price` decimal(10, 2) NULL DEFAULT 0.00 COMMENT '销售价',
   `setdate` datetime(0) NULL DEFAULT NULL COMMENT '价格设定时间',
   `comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '备注',
-  `iscurrent` bit(1) NULL DEFAULT b'0' COMMENT '是否是当前价格',
+  `iscurrent` tinyint(1) NULL DEFAULT '0' COMMENT '是否是当前价格',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
