@@ -1,11 +1,22 @@
 package course_price
 
+import "eventbus/domain/models/repos"
+
 type CoursePrice struct {
 	ID	int `json:"id" gorm:"column:id"`
 	CourseID int `json:"course_id" gorm:"column:course_id"`
 	Price *Price `json:"price" gorm:"embedded"`
 	Comment *PriceComment `json:"comment" gorm:"embedded"`
 	Iscurrent bool `json:"iscurrent" gorm:"column:iscurrent"`
+	repo      repos.CoursePriceRepo
+}
+
+func (*CoursePrice) Name() string {
+	return "course_price"
+}
+
+func (cp *CoursePrice) Load() error {
+	return cp.repo.FindByID(cp)
 }
 
 func New(args ...CoursePriceOption) *CoursePrice {
