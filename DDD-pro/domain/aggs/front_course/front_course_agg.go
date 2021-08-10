@@ -51,3 +51,15 @@ func (fca *FrontCourseAgg) QueryDetail() error {
 
 	return nil
 }
+
+func (fca *FrontCourseAgg) CreateFrontCourse() error {
+	if err := fca.CourseMain.New(); err != nil {
+		return errorstring.NewModelCreateError("course_main",err.Error())
+	}
+	fca.CoursePrice.CourseID = fca.CourseMain.CourseID
+	if err := fca.CoursePrice.New(); err != nil {
+		return errorstring.NewModelCreateError("course_price",err.Error())
+	}
+
+	return nil
+}

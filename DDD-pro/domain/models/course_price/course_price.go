@@ -19,6 +19,10 @@ func (cp *CoursePrice) Load() error {
 	return cp.Repo.FindByID(cp)
 }
 
+func (cp *CoursePrice) New() error {
+	return cp.Repo.New(cp)
+}
+
 func New(args ...CoursePriceOption) *CoursePrice {
 	c := &CoursePrice{
 		Price:NewPrice(),

@@ -18,3 +18,7 @@ func (cmr *CourseMainRepo)FindByID(m repos.Model) error {
 	return cmr.db.Table("courses").Where("course_id=?",
 		m.(*course_model.CourseMain).CourseID).First(m).Error
 }
+
+func (cmr *CourseMainRepo)New(m repos.Model) error {
+	return cmr.db.Table("courses").Create(m).Error
+}

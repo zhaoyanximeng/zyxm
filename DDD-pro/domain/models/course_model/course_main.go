@@ -18,6 +18,10 @@ func (cm *CourseMain) Load() error {
 	return cm.Repo.FindByID(cm)
 }
 
+func (cm *CourseMain) New() error {
+	return cm.Repo.New(cm)
+}
+
 func WithRepo(repo repos.CourseMainRepo) CourseMainOption {
 	return func(c *CourseMain) {
 		c.Repo = repo

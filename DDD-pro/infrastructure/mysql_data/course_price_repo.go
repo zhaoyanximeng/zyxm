@@ -24,3 +24,7 @@ func (cpr *CoursePriceRepo) FindByID(m repos.Model) error {
 	return cpr.db.Table("course_prices").Where("course_id = ? and iscurrent = 1",
 		m.(*course_price.CoursePrice).CourseID).First(m).Error
 }
+
+func (cpr *CoursePriceRepo) New(m repos.Model) error {
+	return cpr.db.Table("course_prices").Create(m).Error
+}
