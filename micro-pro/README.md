@@ -1,1 +1,0 @@
-user生产protobuf文件: protoc --proto_path=./proto --micro_out=proto/user --go_out=proto/user user.proto

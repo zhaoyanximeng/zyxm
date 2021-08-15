@@ -1,0 +1,5 @@
+export set MICRO_REGISTRY=etcd
+export set MICRO_REGISTRY_ADDRESS=127.0.0.1:22379
+export set MICRO_CLIENT=grpc
+export set MICRO_SERVER=grpc
+micro api
