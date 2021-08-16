@@ -10,7 +10,7 @@ func main() {
 
 	service.Init()
 
-	err := course.RegisterCourseServiceHandler(service.Server(),new(course.CourseServiceImpl))
+	err := course.RegisterCourseServiceHandler(service.Server(), new(course.CourseServiceImpl))
 	if err != nil {
 		panic(err)
 	}
