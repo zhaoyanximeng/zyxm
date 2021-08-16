@@ -1,0 +1,20 @@
+syntax = "proto3";
+package course;
+option go_package = "../course";
+
+service CourseService {
+    rpc ListForTop(ListRequest) returns (ListResponse) {}
+}
+
+message CourseModel {
+    int32 course_id = 1;
+    string course_name = 2;
+}
+
+message ListRequest {
+    string id = 1;
+}
+
+message ListResponse {
+    repeated CourseModel result = 1;
+}
