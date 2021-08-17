@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/micro/go-micro/v2"
 	"micro-project/proto/course"
+	"micro-project/services"
 )
 
 func main() {
@@ -10,7 +11,7 @@ func main() {
 
 	service.Init()
 
-	err := course.RegisterCourseServiceHandler(service.Server(), new(course.CourseServiceImpl))
+	err := course.RegisterCourseServiceHandler(service.Server(), new(services.CourseServiceImpl))
 	if err != nil {
 		panic(err)
 	}

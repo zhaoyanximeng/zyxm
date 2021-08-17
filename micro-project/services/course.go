@@ -1,7 +1,8 @@
-package course
+package services
 
 import (
 	"context"
+	. "micro-project/proto/course"
 )
 
 type CourseServiceImpl struct{}
